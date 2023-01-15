@@ -1,0 +1,31 @@
+## postgre cheatsheet
+    https://github.com/korospace/psql-cheatsheet/blob/master/README.md
+
+## heroku postgres credential
+    host: ec2-54-147-36-107.compute-1.amazonaws.com
+    port: 5432
+    username: xegiidcmedfazi
+    database: d2jmb5m8fsud5f
+    password: c033081de4cc9fe453dbedacc48516c965411d7651f011df11ae37904a1d865a
+
+## login heroku postgre terminal
+    psql -h ec2-54-147-36-107.compute-1.amazonaws.com -U xegiidcmedfazi -d d2jmb5m8fsud5f -p 5432
+
+## table users
+    create table users(
+        id serial primary key,
+        email varchar(255) unique,
+        password varchar(255),
+        created_date timestamptz,
+        modified_date timestamptz
+    );
+
+## table reflections
+    create table reflections(
+        id serial primary key,
+        low_point varchar(255),
+        take_away varchar(255),
+        owner_id integer references users(id) on delete cascade on update cascade,
+        created_date timestamptz,
+        modified_date timestamptz
+    );
